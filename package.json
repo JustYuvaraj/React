@@ -4,7 +4,6 @@
   },
   "name": "justreact",
   "version": "1.0.0",
-  "main": "app.js",
   "dependencies": {
     "ansi-styles": "^4.3.0",
     "argparse": "^2.0.1",
@@ -68,6 +67,8 @@
     "posthtml": "^0.16.6",
     "posthtml-parser": "^0.12.1",
     "posthtml-render": "^3.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-refresh": "^0.16.0",
     "regenerator-runtime": "^0.14.1",
     "resolve-from": "^4.0.0",
@@ -96,8 +97,5 @@
   "bugs": {
     "url": "https://github.com/JustYuvaraj/React/issues"
   },
-  "homepage": "https://github.com/JustYuvaraj/React#readme",
-  "devDependencies": {
-    "parcel": "^2.14.4"
-  }
+  "homepage": "https://github.com/JustYuvaraj/React#readme"
 }
