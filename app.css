@@ -1,6 +1,180 @@
-#heading{
-    font-size: 2em;
-    color: #176cc2;
-    text-align: center;
-    margin-top: 20px;
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Gilroy", Arial, Helvetica Neue, sans-serif;
+  font-weight: 200;
+  color: #02060c;
+  line-height: 1.15;
+  background-color: #f9f9f9;
+}
+
+/* Header */
+.header {
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+  max-width: 1200px;
+  height: 80px;
+  margin-left: 190px;
+  margin-right: 190px;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+.head {
+  border: 1px solid #ddd;
+  background: #fff;
+}
+/* Logo */
+.logo img {
+  height: 60px;
+
+  object-fit: contain;
+}
+.logo img:hover {
+  transform: scale(1.25);
+  transition: transform 0.1s ease;
+}
+
+/* Navbar */
+.navbar .nav-list {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.navbar .nav-list li:hover {
+  color: #fc8019;
+}
+
+/* Body */
+.body {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Search Bar */
+.search-bar {
+  transform: scale(1.25);
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.restaurant-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* exactly 4 columns */
+  gap: 24px; /* spacing between cards */
+  background-color: #f8f9fa;
+  box-sizing: border-box;
+}
+
+.restaurant-card {
+  width: 280px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  font-family: "Gilroy-Bold", Arial, sans-serif;
+  cursor: pointer;
+}
+
+.restaurant-card:hover {
+  transform: scale(0.8); /* Shrink on hover */
+}
+
+/* Restaurant image */
+.restaurant-card-img {
+  width: 100%;
+  height: 160px;
+  border-radius: 10px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+/* Offer text like "ITEMS AT ₹94" */
+.restaurant-offer {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Details below image */
+.restaurant-card-details {
+  padding: 12px;
+}
+
+.restaurant-card-details h2 {
+  font-weight: 600;
+  font-family: Gilroy-Bold, Arial, sans-serif;
+  color: #333;
+  margin-bottom: 4px;
+  font-size: 18px;
+  letter-spacing: -0.45px;
+  line-height: 22px;
+}
+.restaurant-card-details p {
+  font-family: Gilroy;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0.4px;
+  color: rgba(2, 6, 12, 0.6);
+  overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  overflow-wrap: break-word;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.restaurant-meta {
+  font-size: 13px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.restaurant-meta span {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* Truncated cuisine text */
+.restaurant-cuisines {
+  font-size: 12px;
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
