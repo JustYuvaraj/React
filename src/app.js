@@ -4,6 +4,16 @@ import "/app.css";
 import { useState } from "react";
 import FilterRescomponent from "./Components/FilterRescomponent";
 
+const getRestaurants = async () => {
+  try {
+    const data = await fetch("https://...");
+    const json = await data.json();
+    console.log(json);
+  } catch (error) {
+    console.error("Error fetching restaurants:", error);
+  }
+};
+getRestaurants();
 
 export const restaurants = [
   {
@@ -1689,7 +1699,6 @@ const Body = () => {
     </div>
   );
 };
-
 
 const Applayout = () => (
   <div className="app">
