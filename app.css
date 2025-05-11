@@ -70,10 +70,94 @@ body {
 }
 
 /* Search Bar */
-.search-bar {
-  transform: scale(1.25);
-  margin-bottom: 20px;
-  transition: transform 0.2s ease;
+.search {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.searchContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.text-box {
+  box-sizing: border-box;
+  display: block;
+  height: 26px;
+  width: 1203.9px;
+
+  /* Margin and Padding */
+  margin: 0;
+  padding: 0;
+
+  /* Font Styling */
+  font-family: "Gilroy", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  line-height: 26px;
+  text-size-adjust: 100%;
+
+  /* Color */
+  color: rgba(2, 6, 12, 0.92);
+  outline: none;
+  outline-color: rgba(2, 6, 12, 0.92);
+
+  /* Rendering and Highlight */
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  /* Logical Margins */
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+
+  unicode-bidi: isolate;
+}
+
+.text-element {
+  text-size-adjust: 100%;
+  font-family: "Gilroy", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: normal;
+  line-height: 16.8px;
+  color: rgb(2, 6, 12);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+
+  /* Outline */
+  outline: none;
+  outline-color: rgb(2, 6, 12);
+}
+
+.btn {
+  box-sizing: border-box;
+  display: inline-grid;
+  grid-auto-flow: column;
+  height: 37.6px;
+  width: auto;
+  margin: 0;
+  padding: 9px 12px;
+  font-family: Gilroy, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 16.8px;
+  letter-spacing: normal;
+  color: rgb(2, 6, 12);
+  background-color: rgb(255, 255, 255);
+  border: 0.8px solid rgba(2, 6, 12, 0.15);
+  border-radius: 18px;
+  box-shadow: 0px 2px 12px rgba(2, 6, 12, 0.04);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.1s ease-in;
+  column-gap: 8px;
+  row-gap: 8px;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .search-bar input {

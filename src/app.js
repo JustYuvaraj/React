@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import logo from "./images/logo1.png";
-import "./app.css";
+import "/app.css";
+import { useState } from "react";
+import FilterRescomponent from "./Components/FilterRescomponent";
 
-const restaurants = [
+
+export const restaurants = [
   {
     info: {
       id: "454403",
@@ -1668,18 +1670,26 @@ const Header = () => (
   </div>
 );
 
-const Body = () => (
-  <div className="body">
-    <div className="search-bar">
-      <input type="text" placeholder="Search for restaurants and dishes" />
+const Body = () => {
+  const [listOfRestaurants, setListOfRestaurants] = useState(restaurants);
+
+  return (
+    <div className="body">
+      <div className="search-bar">
+        <p className="text-box">
+          Restaurants with online food delivery in Chennai
+        </p>
+        <FilterRescomponent setListOfRestaurants={setListOfRestaurants} />
+      </div>
+      <div className="restaurant-container">
+        {listOfRestaurants.map((res, index) => (
+          <RestaurantCard key={index} resobj={res} />
+        ))}
+      </div>
     </div>
-    <div className="restaurant-container">
-      {restaurants.map((res, index) => (
-        <RestaurantCard key={index} resobj={res} />
-      ))}
-    </div>
-  </div>
-);
+  );
+};
+
 
 const Applayout = () => (
   <div className="app">
