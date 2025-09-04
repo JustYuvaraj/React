@@ -1,78 +1,68 @@
 ```mermaid
-graph TD
-    %% --- User Layer ---
-    subgraph UserLayer [User Layer]
-        User["🧑‍🌾 Farmer (App/Chatbot)"]
-        SoilInput["📄 Soil Test Report"]
-        WaterInput["💧 Water Availability"]
-        LocationInput["📍 GPS Location"]
-        ImageInput["📸 Crop/Leaf Image"]
-        VoiceInput["🎤 Voice Query"]
+flowchart LR
+    %% --- Frontend Layer ---
+    subgraph Frontend [📱 Frontend: Mobile App / Chatbot]
+        ImageUpload["📸 Image Upload (Leaf)"]
+        SoilData["🌱 Soil / Water / GPS Data"]
+        VoiceQuery["🎤 Voice Query"]
+        Results["📊 Advisory Results"]
     end
 
-    %% --- Cloud Infrastructure ---
-    subgraph CloudInfra [Cloud Infrastructure]
-        subgraph APILayer [API Layer]
-            APIGateway["🌐 API Gateway"]
-            Cache["⚡ Redis Cache"]
-        end
-
-        subgraph AppLayer [Application Layer]
-            UserFarmService["👤 User and Farm Service"]
-            PestService["🪳 Pest and Disease Service"]
-            CropService["🌱 Crop Advisory Service"]
-            WeatherService["☁️ Weather and Market Service"]
-            VoiceService["🗣️ Voice Assist Service"]
-            NotificationService["🔔 Notification Service"]
-        end
-
-        subgraph AIServing [AI/ML Serving Layer]
-            CNN_Model["🤖 CNN (ResNet/EfficientNet)"]
-            RecoEngine["💡 Recommendation Engine (XGBoost/Random Forest)"]
-            ForecastModel["📈 Forecast Model (LSTM/Prophet)"]
-            NLP_Models["🎤 NLP Models (BERT/Whisper/TTS)"]
-        end
-
-        subgraph DBLayer [Data Persistence Layer]
-            PrimaryDB["✍️ Primary DB (Writes)"]
-            ReadReplicas["📖 Read Replicas (Reads)"]
-        end
+    %% --- Backend Layer ---
+    subgraph Backend [⚡ Backend: FastAPI Gateway + Services]
+        FastAPI["🌐 FastAPI Gateway"]
+        PestService["🪳 Pest Detection Service"]
+        CropService["🌾 Crop Advisory Service"]
+        WeatherService["☁️ Weather Service"]
+        VoiceService["🗣️ Voice Assist Service"]
     end
 
-    subgraph MLOps [MLOps Training & Deployment]
-        DataSources["💾 Data Sources (Soil, Images, Weather, Market, Feedback)"]
-        TrainingPipeline["⚙️ Model Training & Validation"]
+    %% --- AI/ML Layer ---
+    subgraph ML [🤖 AI/ML Models]
+        CNN["🖼️ CNN Model<br/>(Pest Detection)"]
+        RecoEngine["💡 Recommendation Engine<br/>(Crop/Fertilizer)"]
+        ForecastModel["📈 Forecast Model<br/>(Weather)"]
+        NLP["🔊 NLP Models<br/>(Whisper / BERT / TTS)"]
     end
 
-    %% --- User Inputs to Services ---
-    SoilInput --> APIGateway --> CropService
-    WaterInput --> APIGateway --> CropService
-    LocationInput --> APIGateway --> WeatherService
-    ImageInput --> APIGateway --> PestService
-    VoiceInput --> APIGateway --> VoiceService
-    User --> APIGateway
+    %% --- Database Layer ---
+    subgraph Database [💾 Data Layer]
+        PrimaryDB["🗄️ Primary DB<br/>(Profiles, Soil, Pest Logs, Feedback)"]
+        Redis["⚡ Redis Cache<br/>(Weather, Market, Recent Results)"]
+    end
 
-    %% --- Service to AI Connections ---
-    PestService --> CNN_Model
-    CropService --> RecoEngine
-    WeatherService --> ForecastModel
-    VoiceService --> NLP_Models
+    %% --- MLOps Layer ---
+    subgraph MLOps [⚙️ MLOps Training & Deployment]
+        DataSources["📂 Data Sources<br/>(Soil, Images, Weather, Market, Feedback)"]
+        TrainingPipeline["🏋️ Model Training & Validation"]
+    end
 
-    %% --- Service to DB Connections ---
-    CropService --> PrimaryDB
-    WeatherService --> PrimaryDB
-    PestService --> PrimaryDB
-    UserFarmService --> PrimaryDB
-    PrimaryDB --> ReadReplicas
+    %% --- Flows: Frontend <-> Backend ---
+    ImageUpload <--> FastAPI <--> PestService <--> CNN
+    SoilData <--> FastAPI <--> CropService <--> RecoEngine
+    SoilData <--> FastAPI <--> WeatherService <--> ForecastModel
+    VoiceQuery <--> FastAPI <--> VoiceService <--> NLP
+
+    %% --- Service <-> Database Connections ---
+    PestService <--> PrimaryDB
+    CropService <--> PrimaryDB
+    WeatherService <--> PrimaryDB
+    VoiceService <--> PrimaryDB
+    WeatherService <--> Redis
+    CropService <--> Redis
+
+    %% --- Results Back to User ---
+    PrimaryDB <--> Results
+    Redis <--> Results
 
     %% --- Feedback Loop for Retraining ---
     CropService --> DataSources
     PestService --> DataSources
     WeatherService --> DataSources
     VoiceService --> DataSources
-
     DataSources --> TrainingPipeline
-    TrainingPipeline --> CNN_Model
+    TrainingPipeline --> CNN
     TrainingPipeline --> RecoEngine
     TrainingPipeline --> ForecastModel
-    TrainingPipeline --> NLP_Models
+    TrainingPipeline --> NLP
+```
